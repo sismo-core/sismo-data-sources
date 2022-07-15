@@ -4,6 +4,7 @@ import sismoAndMasqueradeLensFollowers from "../../group-generators/generators/s
 import { AttestationsCollection } from "../../src/attestations-collection/attestations-collection";
 import { Badge } from "../../src/badge/badge";
 import { Attester } from "../../src/attester/attester";
+import ethereumPowerUsers from "../../group-generators/generators/ethereum-power-users";
 
 export const hydraS1SimpleAttester = async () =>
   new Attester({
@@ -41,6 +42,11 @@ export const hydraS1SimpleAttester = async () =>
       // Masquerade
       new AttestationsCollection({
         groups: [await sismoAndMasqueradeLensFollowers.getLatestGroup()],
+        badge: new Badge({}),
+      }),
+      // Ethereum-power-users
+      new AttestationsCollection({
+        groups: [await ethereumPowerUsers.getLatestGroup()],
         badge: new Badge({}),
       }),
     ],

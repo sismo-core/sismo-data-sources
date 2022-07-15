@@ -26,6 +26,6 @@ export default class BigQueryHelper {
   }
 
   public static excludeReceiptStatusNull() {
-    return "(receipt_status = 0 or receipt_status is null)";
+    return "(receipt_status = 1 or receipt_status is null)";
   }
 }

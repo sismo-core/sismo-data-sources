@@ -15,6 +15,7 @@ import sismoDiggers from "./sismo-diggers";
 import sismoDomain from "./sismo-domains";
 import sismoGuest from "./sismo-guests";
 import sismoLensFollowers from "./sismo-lens-followers";
+import ethereumMostTransactions from "./ethereum-most-transactions";
 
 const generators = [
   ethOwners,
@@ -34,6 +35,7 @@ const generators = [
   ethereumDevelopers,
   ethereumEarlyUsers,
   ethereumPowerUsers,
+  ...ethereumMostTransactions(),
 ];
 
 export default generators;
