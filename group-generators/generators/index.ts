@@ -6,6 +6,9 @@ import LensProfiles from "./lens-profiles";
 import MasqueradeLensFollowers from "./masquerade-lens-followers";
 import PoolyLawyerMinters from "./pooly-lawyer-minters";
 import PoolyMinters from "./pooly-minters";
+import proofOfHatBronze from "./proof-of-hat-bronze";
+import proofOfHatGold from "./proof-of-hat-gold";
+import proofOfHatSilver from "./proof-of-hat-silver";
 import SismoAndMasqueradeLensFollowers from "./sismo-and-masquerade-lens-followers";
 import SismoCitizens from "./sismo-citizens";
 import SismoDiggers from "./sismo-diggers";
@@ -30,4 +33,7 @@ export const getGenerators = () => ({
   "sismo-guests": new SismoGuest(),
   "sismo-lens-followers": new SismoLensFollowers(),
   "sismo-masquerade-lens-followers": new SismoMasqueradeLensFollowers(),
+  "proof-of-hat-gold": new proofOfHatGold(),
+  "proof-of-hat-silver": new proofOfHatSilver(),
+  "proof-of-hat-bronze": new proofOfHatBronze(),
 });

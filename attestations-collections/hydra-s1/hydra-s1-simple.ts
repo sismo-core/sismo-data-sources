@@ -56,6 +56,35 @@ export const hydraS1SimpleAttester = async () =>
           image: "./badges/ethereum_power_users.svg",
           requirements: [],
         }),
+        //pohgold
+        
       }),
+      new AttestationsCollection({
+        groups: [await Group.store.latest("proof-of-hat-bronze")],
+        badge: new Badge({
+          name: "Bronze proof of hat",
+          description: "helped ",
+          image: "./badges/ZK_BADGE_BRONZE.svg",
+          requirements: [],
+        }),
+      }),
+      new AttestationsCollection({
+        groups: [await Group.store.latest("proof-of-hat-silver")],
+        badge: new Badge({
+          name: "Silver proof of hat",
+          description: "Silver bounty completed",
+          image: "./badges/ZK_BADGE_SILVER.svg",
+          requirements: [],
+        }),
+      }),
+      new AttestationsCollection({
+        groups: [await Group.store.latest("proof-of-hat-gold")],
+        badge: new Badge({
+          name: "Gold proof of hat",
+          description: "Gold bounty completed",
+          image: "./badges/ZK_BADGE_GOLD.svg",
+          requirements: [],
+        }),
+      })
     ],
   });
