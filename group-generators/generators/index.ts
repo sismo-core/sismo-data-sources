@@ -13,6 +13,7 @@ import SismoDomain from "./sismo-domains";
 import SismoGuest from "./sismo-guests";
 import SismoLensFollowers from "./sismo-lens-followers";
 import SismoMasqueradeLensFollowers from "./sismo-masquerade-lens-followers";
+import PoHHumans from './poh-humans';
 
 export const getGenerators = () => ({
   "ens-voters": new EnsVoters(),
@@ -30,4 +31,5 @@ export const getGenerators = () => ({
   "sismo-guests": new SismoGuest(),
   "sismo-lens-followers": new SismoLensFollowers(),
   "sismo-masquerade-lens-followers": new SismoMasqueradeLensFollowers(),
+  "poh-humans": new PoHHumans(),
 });
