@@ -1,9 +1,14 @@
 import { AttestationsCollection } from "../../src/topics/attestations-collection";
-import { Badge } from "../../src/topics/badge";
 import { Attester } from "../../src/topics/attester";
+import { Badge } from "../../src/topics/badge";
 
-export default class HydraS1SimpleAttester extends Attester {
-  collectionIdFirst = 10000001;
+export default class extends Attester {
+  firstCollectionId = 10000001;
+  networkConfigurations = {
+    polygon: {
+      address: "",
+    },
+  };
   attestationsCollections = [
     // Sismo friends
     new AttestationsCollection({

@@ -6,6 +6,9 @@ export type AttestationsCollectionsType = {
   badge: Badge;
 };
 
+/**
+ * @description The representation of an AttestationsCollection that belongs to a specific Attester.
+ */
 export class AttestationsCollection {
   public groupFetcher: () => Promise<Group[]>;
   public badge: Badge;
