@@ -6,7 +6,7 @@
     "test": "npx jest --coverage --runInBand",
     "api": "NODE_ENV=local  LOG=true node --require ts-node/register src/api/local.ts",
     "generate:group": "NODE_ENV=local  LOG=true node --max_old_space_size=4096 --require ts-node/register src/scripts/generate-group.ts",
-    "lint": "eslint 'src/**/*.ts' 'attestations-collections/**/*.ts' 'group-generators/**/*.ts' --max-warnings=0",
+    "lint": "eslint 'src/**/*.ts' 'attesters/**/*.ts' 'group-generators/**/*.ts' --max-warnings=0",
     "prettier": "prettier --write 'src/**/*.ts' 'attestations-collections/**/*.ts' 'group-generators/**/*.ts'"
   },
   "devDependencies": {

@@ -2,7 +2,8 @@ import "reflect-metadata";
 import { DependencyContainer } from "tsyringe";
 import { Group, GroupStore } from "../../topics/group";
 import { createTestGroups, exampleData } from "../../topics/group/test-groups";
-import { getMemoryContainer, getTestLocalContainer } from "../container";
+import { getLocalContainer, getMemoryContainer } from "../container";
+import { LocalGroupStore } from "./local-group-store";
 
 const getGroupStore = (container: DependencyContainer): GroupStore => {
   return container.resolve("GroupStore");
@@ -17,6 +18,7 @@ type TestData = {
   container: DependencyContainer;
   groups: { [name: string]: Group };
   groupStore: GroupStore;
+  validUrlPrefix: string;
 };
 
 describe("test groups stores", () => {
@@ -24,7 +26,12 @@ describe("test groups stores", () => {
   let testData: { [name in TestType]: TestData };
 
   beforeEach(() => {
-    const localContainer = getTestLocalContainer();
+    const localContainer = getLocalContainer().createChildContainer();
+    const localGroupStore = new LocalGroupStore("tests-group-store");
+    localGroupStore.reset();
+    localContainer.register<GroupStore>("GroupStore", {
+      useValue: localGroupStore,
+    });
     const memoryContainer = getMemoryContainer();
     memoryContainer.clearInstances();
     testData = {
@@ -32,11 +39,13 @@ describe("test groups stores", () => {
         container: localContainer,
         groups: createTestGroups(localContainer),
         groupStore: getGroupStore(localContainer),
+        validUrlPrefix: "file:///",
       },
       [TestType.Memory]: {
         container: memoryContainer,
         groups: createTestGroups(memoryContainer),
         groupStore: getGroupStore(memoryContainer),
+        validUrlPrefix: "memory://",
       },
     };
   });
@@ -176,4 +185,12 @@ describe("test groups stores", () => {
       expect(await group.data()).toEqual(exampleData);
     }
   );
+
+  it.each(testCases)("Should get valid url prefix", async (dataType) => {
+    expect(
+      testData[dataType].groups.group1_0.dataUrl.startsWith(
+        testData[dataType].validUrlPrefix
+      )
+    ).toBeTruthy();
+  });
 });

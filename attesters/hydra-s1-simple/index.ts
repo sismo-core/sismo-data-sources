@@ -1,12 +1,14 @@
 import { AttestationsCollection } from "../../src/topics/attestations-collection";
 import { Badge } from "../../src/topics/badge";
-import { Attester } from "../../src/topics/attester";
+import { HydraS1Attester } from "../hydra-s1";
 
-export default class HydraS1SimpleAttester extends Attester {
+export default class HydraS1SimpleAttester extends HydraS1Attester {
+  name = "hydra-s1-simple";
   collectionIdFirst = 10000001;
   attestationsCollections = [
     // Sismo friends
     new AttestationsCollection({
+      internalCollectionId: 0,
       groupFetcher: async () => [await this.groupStore.latest("sismo-diggers")],
       badge: new Badge({
         name: "ZK Badge: Sismo Digger",
@@ -16,6 +18,7 @@ export default class HydraS1SimpleAttester extends Attester {
       }),
     }),
     new AttestationsCollection({
+      internalCollectionId: 1,
       groupFetcher: async () => [
         await this.groupStore.latest("sismo-citizens"),
       ],
@@ -27,6 +30,7 @@ export default class HydraS1SimpleAttester extends Attester {
       }),
     }),
     new AttestationsCollection({
+      internalCollectionId: 2,
       groupFetcher: async () => [], // [await this.groupStore.latest("sismo-guests")]
       badge: new Badge({
         name: "ZK Badge: Sismo Guest",
@@ -37,6 +41,7 @@ export default class HydraS1SimpleAttester extends Attester {
     }),
     // Masquerade
     new AttestationsCollection({
+      internalCollectionId: 3,
       groupFetcher: async () => [
         await this.groupStore.latest("sismo-masquerade-lens-followers"),
       ],
@@ -50,6 +55,7 @@ export default class HydraS1SimpleAttester extends Attester {
     }),
     // Ethereum-power-users
     new AttestationsCollection({
+      internalCollectionId: 4,
       groupFetcher: async () => [
         await this.groupStore.latest("ethereum-power-users"),
       ],

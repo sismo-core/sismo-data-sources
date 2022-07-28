@@ -1,4 +1,4 @@
-import { getCurrentBlockNumber } from "../../helpers/block-number";
+import { getCurrentBlockNumber } from "../../helpers";
 import {
   GenerationContext,
   GenerationContextConstructor,
