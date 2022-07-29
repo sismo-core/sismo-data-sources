@@ -13,12 +13,8 @@ describe("test groups api", () => {
   let container: DependencyContainer;
   let testGroups: { [name: string]: Group };
 
-  beforeAll(() => {
-    container = getMemoryContainer();
-  });
-
   beforeEach(async () => {
-    container.clearInstances();
+    container = getMemoryContainer();
     fastify = getFastify(false, {}, container);
     await fastify.ready();
     testGroups = createTestGroups(container);

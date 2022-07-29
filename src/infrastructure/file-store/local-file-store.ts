@@ -9,7 +9,7 @@ export class LocalFileStore extends FileStore {
   basePath: string;
 
   constructor(prefix: string) {
-    super();
+    super(prefix);
     this.basePath = `${DISK_PATH}/${prefix}/`;
   }
 
@@ -17,10 +17,16 @@ export class LocalFileStore extends FileStore {
     return `${this.basePath}/${filename}`;
   }
 
+  public async exists(filename: string): Promise<boolean> {
+    return fs.existsSync(this.getPath(filename));
+  }
+
   async read(filename: string): Promise<any> {
-    return JSON.parse(
-      (await fs.promises.readFile(this.getPath(filename), "utf8")).toString()
-    );
+    const path = this.getPath(filename);
+    if (!(await this.exists(filename))) {
+      throw Error(`File ${path} does not exist!`);
+    }
+    return JSON.parse((await fs.promises.readFile(path, "utf8")).toString());
   }
 
   async write(filename: string, data: any): Promise<void> {

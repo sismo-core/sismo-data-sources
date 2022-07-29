@@ -5,10 +5,6 @@ import { createTestGroups, exampleData } from "../../topics/group/test-groups";
 import { getLocalContainer, getMemoryContainer } from "../container";
 import { LocalGroupStore } from "./local-group-store";
 
-const getGroupStore = (container: DependencyContainer): GroupStore => {
-  return container.resolve("GroupStore");
-};
-
 enum TestType {
   Local,
   Memory,
@@ -33,18 +29,17 @@ describe("test groups stores", () => {
       useValue: localGroupStore,
     });
     const memoryContainer = getMemoryContainer();
-    memoryContainer.clearInstances();
     testData = {
       [TestType.Local]: {
         container: localContainer,
         groups: createTestGroups(localContainer),
-        groupStore: getGroupStore(localContainer),
+        groupStore: localContainer.resolve("GroupStore"),
         validUrlPrefix: "file:///",
       },
       [TestType.Memory]: {
         container: memoryContainer,
         groups: createTestGroups(memoryContainer),
-        groupStore: getGroupStore(memoryContainer),
+        groupStore: memoryContainer.resolve("GroupStore"),
         validUrlPrefix: "memory://",
       },
     };

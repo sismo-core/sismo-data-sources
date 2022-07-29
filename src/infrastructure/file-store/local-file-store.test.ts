@@ -7,11 +7,6 @@ describe("test local file store", () => {
     fileStore.reset();
   });
 
-  it("Should store a file and retrieve", async () => {
-    await fileStore.write("test_file", "test_data");
-    expect(await fileStore.read("test_file")).toBe("test_data");
-  });
-
   it("Should store multiple files and list them", async () => {
     await fileStore.write("test_file1", "test_data1");
     await fileStore.write("test_file2", "test_data2");

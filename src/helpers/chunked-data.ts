@@ -1,8 +1,12 @@
-export type ChunkType<T> = {
+export type ChunkMetadataType = {
   chunkNumber: number;
   totalChunks: number;
   min: string;
   max: string;
+};
+
+export type ChunkType<T> = {
+  metadata: ChunkMetadataType;
   data: { [key: string]: T };
 };
 
@@ -35,10 +39,12 @@ export class ChunkedData<T> {
         chunkData[this.keys[i]] = this._data[this.keys[i]];
       }
       yield {
-        chunkNumber: chunkNumber,
-        totalChunks: this.totalChunks,
-        min: this.keys[chunkNumber * this.chunkSize],
-        max: this.keys[lastIndex],
+        metadata: {
+          chunkNumber: chunkNumber,
+          totalChunks: this.totalChunks,
+          min: this.keys[chunkNumber * this.chunkSize],
+          max: this.keys[lastIndex],
+        },
         data: chunkData,
       };
     }

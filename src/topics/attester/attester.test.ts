@@ -1,15 +1,17 @@
 import "reflect-metadata";
+import { DependencyContainer } from "tsyringe";
 import { getMemoryContainer } from "../../infrastructure";
 import { TestAttester } from "./test-attester";
 import { Attester, AvailableDataStore } from "./";
 
 describe("Test attester", () => {
-  const container = getMemoryContainer();
-  const baseAttester = container.resolve(Attester);
+  let container: DependencyContainer;
+  let baseAttester: Attester;
   let testAttester: TestAttester;
 
   beforeEach(async () => {
-    container.clearInstances();
+    container = getMemoryContainer();
+    baseAttester = container.resolve(Attester);
     testAttester = container.resolve(TestAttester);
   });
 

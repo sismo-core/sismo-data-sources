@@ -112,4 +112,15 @@ describe("test available data", () => {
       expect(latest2[0]).toEqual(testAvailableData.attester2_0);
     }
   );
+
+  it.each(testCases)(
+    "Should search latest in empty store and get empty array",
+    async (dataType) => {
+      const availableData = await testData[dataType].store.search({
+        attesterName: testAvailableData.attester1_0.attesterName,
+        latest: true,
+      });
+      expect(availableData).toHaveLength(0);
+    }
+  );
 });

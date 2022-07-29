@@ -16,7 +16,7 @@ export class MemoryGroupStore extends GroupStore {
 
   clear(): void {
     this._groupsStore = [];
-    this._dataStore = new MemoryFileStore();
+    this._dataStore = new MemoryFileStore("");
   }
 
   dataUrl(group: Group): string {

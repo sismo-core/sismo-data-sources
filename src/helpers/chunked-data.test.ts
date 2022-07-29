@@ -29,17 +29,21 @@ describe("test chunked data", () => {
     }
     expect(chunks).toHaveLength(2);
     expect(chunks[0]).toEqual({
-      chunkNumber: 0,
-      totalChunks: 2,
-      min: "key1",
-      max: "key2",
+      metadata: {
+        chunkNumber: 0,
+        totalChunks: 2,
+        min: "key1",
+        max: "key2",
+      },
       data: { key1: 1, key2: 2 },
     });
     expect(chunks[1]).toEqual({
-      chunkNumber: 1,
-      totalChunks: 2,
-      min: "key3",
-      max: "key3",
+      metadata: {
+        chunkNumber: 1,
+        totalChunks: 2,
+        min: "key3",
+        max: "key3",
+      },
       data: { key3: 3 },
     });
   });
@@ -53,24 +57,30 @@ describe("test chunked data", () => {
     }
     expect(chunks).toHaveLength(3);
     expect(chunks[0]).toEqual({
-      chunkNumber: 0,
-      totalChunks: 3,
-      min: "key1",
-      max: "key1",
+      metadata: {
+        chunkNumber: 0,
+        totalChunks: 3,
+        min: "key1",
+        max: "key1",
+      },
       data: { key1: 1 },
     });
     expect(chunks[1]).toEqual({
-      chunkNumber: 1,
-      totalChunks: 3,
-      min: "key2",
-      max: "key2",
+      metadata: {
+        chunkNumber: 1,
+        totalChunks: 3,
+        min: "key2",
+        max: "key2",
+      },
       data: { key2: 2 },
     });
     expect(chunks[2]).toEqual({
-      chunkNumber: 2,
-      totalChunks: 3,
-      min: "key3",
-      max: "key3",
+      metadata: {
+        chunkNumber: 2,
+        totalChunks: 3,
+        min: "key3",
+        max: "key3",
+      },
       data: { key3: 3 },
     });
   });

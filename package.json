@@ -41,6 +41,8 @@
   },
   "dependencies": {
     "@google-cloud/bigquery": "^5.12.0",
+    "@sismo-core/crypto": "^1.1.4",
+    "@sismo-core/kv-merkle-tree": "^1.0.4",
     "ethers": "^5.6.2",
     "fastify": "^4.3.0",
     "graphql": "^16.5.0",
